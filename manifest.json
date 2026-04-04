@@ -1,0 +1,25 @@
+{
+  "name": "ZoiWeb - Online Exam Platform",
+  "short_name": "ZoiWeb",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#007bff",
+  "description": "ZOIWEB Online Exam Platform",
+  "icons": [
+    {
+      "src": "https://lh3.googleusercontent.com/d/18P536bmOQzkEhxv0qKxuUu6F1_XoBDXH",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://lh3.googleusercontent.com/d/18P536bmOQzkEhxv0qKxuUu6F1_XoBDXH",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
