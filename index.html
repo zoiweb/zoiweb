@@ -68,22 +68,10 @@ body { margin:0; font-family: Arial; }
 </head>
 <body>
 
-<!-- Modal -->
-<div class="modal fade" id="installAppModal" tabindex="-1">
-  <div class="modal-dialog modal-sm modal-dialog-centered">
-    <div class="modal-content bg-body-tertiary text-body text-center">
-      <div class="modal-header border-secondary">
-        <h6 class="modal-title w-100" id="installAppModalTitle">
-          Do you want to install zoiweb app ?
-        </h6>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <button id="installBtnModal" class="btn btn-primary">Install</button>
-        <button id="closeBtnModal" class="btn btn-secondary">Later</button>
-      </div>
-    </div>
-  </div>
+<div id="installPopup">
+  <div>Install ZoiWeb App on Desktop?</div>
+  <button id="installBtn">Install</button>
+  <button id="closeBtn">Later</button>
 </div>
 
 <div class="d-flex flex-column vh-100">
@@ -158,10 +146,6 @@ body { margin:0; font-family: Arial; }
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://kit.fontawesome.com/3561c44a4b.js" crossorigin="anonymous"></script>
-  
-  
 <script>
   // Automatically set current year
   document.getElementById('year').textContent = new Date().getFullYear();
@@ -169,44 +153,42 @@ body { margin:0; font-family: Arial; }
 
 <script>
 let deferredPrompt;
-
-// Bootstrap modal instance
-const installModalEl = document.getElementById('installAppModal');
-const installModal = new bootstrap.Modal(installModalEl);
-const installBtnModal = document.getElementById('installBtnModal');
-const closeBtnModal = document.getElementById('closeBtnModal');
+const popup = document.getElementById('installPopup');
+const installBtn = document.getElementById('installBtn');
+const closeBtn = document.getElementById('closeBtn');
 
 // Detect install availability
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
 
-  // Show Bootstrap modal instead of custom popup
   setTimeout(() => {
-    installModal.show();
+    popup.style.display = 'block';
   }, 2000);
 });
 
-// Install button click
-installBtnModal.addEventListener('click', async () => {
+// Install click
+installBtn.addEventListener('click', async () => {
   if (!deferredPrompt) return;
   deferredPrompt.prompt();
   const { outcome } = await deferredPrompt.userChoice;
 
-  installModal.hide();
+  popup.style.display = 'none';
   deferredPrompt = null;
 });
 
-// Close button click
-closeBtnModal.addEventListener('click', () => {
-  installModal.hide();
+// Close popup
+closeBtn.addEventListener('click', () => {
+  popup.style.display = 'none';
 });
 
 // After install → auto fullscreen launch
 window.addEventListener('appinstalled', () => {
   console.log('App Installed');
 
+  // छोटा delay ताकि install complete हो जाए
   setTimeout(() => {
+    // नया window open (PWA mode में fullscreen जैसा feel देगा)
     window.open(window.location.href, '_blank');
   }, 1000);
 });
@@ -231,6 +213,8 @@ if ('serviceWorker' in navigator) {
 </style>
 
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/3561c44a4b.js" crossorigin="anonymous"></script>
 
 </body>
 </html>
