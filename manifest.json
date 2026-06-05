@@ -1,5 +1,5 @@
 {
-  "name": "ZoiWeb - Online Exam Platform",
+  "name": "zoiweb- community",
   "short_name": "ZoiWeb",
   "start_url": "/",
   "scope": "/",
@@ -7,7 +7,7 @@
   "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#007bff",
-  "description": "ZOIWEB Online Exam Platform",
+  "description": "zoiweb is a small, local platform community. Start sorting and filtering by Gotra to find members of your choice.",
   "icons": [
     {
       "src": "https://lh3.googleusercontent.com/d/18P536bmOQzkEhxv0qKxuUu6F1_XoBDXH",
